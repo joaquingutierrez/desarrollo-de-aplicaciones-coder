@@ -28,7 +28,7 @@ export default function App() {
         setEventList(eventList.filter((item) => item.id !== id))
     }
     const handleCompleteTask = (id) => {
-
+        
     }
 
     return (
