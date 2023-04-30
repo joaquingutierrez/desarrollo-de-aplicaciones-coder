@@ -24,11 +24,17 @@ export default function App() {
             setEventText("")
         }
     }
+    const handleOnDeleteEvent = (id) => {
+        setEventList(eventList.filter((item) => item.id !== id))
+    }
+    const handleCompleteTask = (id) => {
+
+    }
 
     return (
         <View style={styles.container}>
             <Input handleAddEvent={handleAddEvent} handleOnChangeText={handleOnChangeText} value={eventText} />
-            <Events eventList={eventList}/>
+            <Events eventList={eventList} handleOnDeleteEvent={handleOnDeleteEvent} />
         </View>
     );
 }

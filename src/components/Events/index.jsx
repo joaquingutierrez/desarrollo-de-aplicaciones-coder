@@ -2,11 +2,11 @@ import { FlatList } from "react-native"
 import EventItem from "./EventItem/index"
 import {styles} from "./styles"
 
-const Events = ({eventList}) => {
+const Events = ({eventList, handleOnDeleteEvent}) => {
 
     const renderItem = ({item}) => {
         return (
-            <EventItem item={item}/>
+            <EventItem item={item} handleOnDeleteEvent={handleOnDeleteEvent} />
         )
     }
 
@@ -15,7 +15,7 @@ const Events = ({eventList}) => {
             style={styles.listContainer}
             data={eventList}
             renderItem={renderItem}
-            const keyExtractor = {(item) => item.id}
+            keyExtractor = {(item) => item.id}
         />
     )
 }
