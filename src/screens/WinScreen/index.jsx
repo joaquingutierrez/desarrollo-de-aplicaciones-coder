@@ -7,12 +7,14 @@ const WinScreen = ({ points }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>
-                {"You Win!!!"}
-            </Text>
-            <Text style={styles.score}>
-                {"Score: " + points.current}
-            </Text>
+            <View style={styles.textContainer}>
+                <Text style={styles.text}>
+                    {"You Win!!!"}
+                </Text>
+                <Text style={styles.score}>
+                    {"Score: " + points.current}
+                </Text>
+            </View>
         </View>
     )
 }

@@ -34,12 +34,14 @@ const InGame = ({ winTheGame, numberChousen }) => {
 
     return (
         <View style={styles.container}>
-            <Text>
-                {randomNumber}
-            </Text>
-            <View style={styles.buttonContainer}>
-                <Button title="Lower" onPress={handleLower} />
-                <Button title="Higher" onPress={handleHigher} />
+            <View style={styles.cardContainer}>
+                <Text style={styles.randomNumber}>
+                    {randomNumber}
+                </Text>
+                <View style={styles.buttonContainer}>
+                    <Button title="Lower" onPress={handleLower} />
+                    <Button title="Higher" onPress={handleHigher} />
+                </View>
             </View>
         </View>
     )

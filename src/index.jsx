@@ -1,9 +1,10 @@
-import { View, Alert } from 'react-native';
+import { View, Alert, ActivityIndicator } from 'react-native';
 import { styles } from "./style"
 import { useState, useRef } from 'react';
 import { Input } from './components';
 import { InGame, WinScreen } from "./screens"
-
+import { useFonts } from 'expo-font';
+import {colors} from "./constants/theme"
 
 
 
@@ -14,6 +15,14 @@ export default function App() {
     const [win, setWin] = useState(false)
     const points = useRef(100)
 
+
+    const [loaded] = useFonts({
+        "Dancing-Script-Regular": require("../assets/fonts/static/DancingScript-Regular.ttf"),
+        "Dancing-Script-Bold": require("../assets/fonts/static/DancingScript-Bold.ttf")
+    })
+    if (!loaded) {
+        return <ActivityIndicator size="large" />
+    }
 
     const handleOnChangeText = (value) => {
         numberChousen.current = Number(value)
@@ -34,7 +43,7 @@ export default function App() {
                 }
             ])
         }
-        Alert.alert("Start the game", "Do you want to play with the number: ", [
+        Alert.alert("Start the game", "Do you want to play with the number: " + numberChousen.current, [
             {
                 text: "Cancel",
             },
@@ -58,7 +67,7 @@ export default function App() {
         <View style={styles.container}>
             {
                 !inGame ?
-                    <Input placeHolder="Add a number..." buttonTitle="Confirm" handleButton={handleButton} handleOnChangeText={handleOnChangeText} />
+                    <Input color={colors.tertiary} placeHolder="Add a number..." buttonTitle="Confirm" handleButton={handleButton} handleOnChangeText={handleOnChangeText} />
                     :
                     !win ?
                         <InGame winTheGame={winTheGame} numberChousen={numberChousen} />
