@@ -1,13 +1,13 @@
 import {View, TextInput, Button} from "react-native"
 import {styles} from "./styles"
 
-const Input = ({handleAddEvent, value, handleOnChangeText}) => {
+const Input = ({placeHolder, buttonTitle, handleButton, value, handleOnChangeText}) => {
     
     
     return (
         <View style={styles.inputContainer}>
-            <TextInput placeholder='Nuevo evento...' style={styles.input} onChangeText={handleOnChangeText} value={value} />
-            <Button title="Agregar" color="#0077B6" onPress={handleAddEvent} />
+            <TextInput placeholder={placeHolder} style={styles.input} onChangeText={handleOnChangeText} value={value} />
+            <Button title={buttonTitle} color="#0077B6" onPress={handleButton} />
         </View>
     )
 }
