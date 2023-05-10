@@ -1,15 +1,17 @@
 import { Text, View } from "react-native"
+import { styles } from "./style"
 
 
-
-const WinScreen = ({points}) => {
+const WinScreen = ({ points }) => {
 
 
     return (
-        <View>
-            <Text>
+        <View style={styles.container}>
+            <Text style={styles.text}>
                 {"You Win!!!"}
-                {points.current}
+            </Text>
+            <Text style={styles.score}>
+                {"Score: " + points.current}
             </Text>
         </View>
     )
