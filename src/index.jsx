@@ -21,7 +21,7 @@ export default function App() {
         "Dancing-Script-Bold": require("../assets/fonts/static/DancingScript-Bold.ttf")
     })
     if (!loaded) {
-        return <ActivityIndicator size="large" />
+        return <ActivityIndicator style={styles.container} size="large" color={colors.primary}/>
     }
 
     const handleOnChangeText = (value) => {
