@@ -1,8 +1,8 @@
-import { Text, View } from "react-native"
+import { Text, View, Button } from "react-native"
 import { styles } from "./style"
+import {colors} from "../../constants/theme"
 
-
-const WinScreen = ({ points }) => {
+const WinScreen = ({ points, restartGame }) => {
 
 
     return (
@@ -14,6 +14,7 @@ const WinScreen = ({ points }) => {
                 <Text style={styles.score}>
                     {"Score: " + points.current}
                 </Text>
+                <Button onPress={restartGame} color={colors.secundary} title="Restart" />
             </View>
         </View>
     )

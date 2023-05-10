@@ -63,6 +63,14 @@ export default function App() {
         }
     }
 
+
+    const restartGame = () => {
+        setWin(false)
+        setInGame(false)
+        points.current = 100
+        numberChousen.current = null
+    }
+
     return (
         <View style={styles.container}>
             {
@@ -72,7 +80,7 @@ export default function App() {
                     !win ?
                         <InGame winTheGame={winTheGame} numberChousen={numberChousen} />
                         :
-                        <WinScreen points={points} />
+                        <WinScreen points={points} restartGame={restartGame} />
             }
 
         </View>
