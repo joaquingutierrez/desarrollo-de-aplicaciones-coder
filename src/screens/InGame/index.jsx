@@ -1,23 +1,34 @@
-import { View, Button, Text } from "react-native"
+import { View, Button, Text, Alert } from "react-native"
 import { useState, useRef } from "react"
 import { styles } from "./styles"
 
-const InGame = ({ numerChousen }) => {
+const InGame = ({ winTheGame, numberChousen }) => {
 
     const maxNumber = useRef(99)
     const minNumber = useRef(1)
+    let random
 
     const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * maxNumber.current + minNumber.current))
 
     const handleLower = () => {
-        maxNumber.current = randomNumber
-        const random = Math.floor(Math.random() * maxNumber.current + minNumber.current)
-        setRandomNumber(random)
+        if (randomNumber < numberChousen.current) {
+            return Alert.alert("Dont cheat", "", [{ text: "Sorry" }])
+        } else {
+            maxNumber.current = randomNumber
+            const random = Math.floor((Math.random() * (maxNumber.current - minNumber.current + 1)) + minNumber.current)
+            winTheGame(random)
+            setRandomNumber(random)
+        }
     }
     const handleHigher = () => {
-        minNumber.current = randomNumber
-        const random = Math.floor((Math.random() * (maxNumber.current-minNumber.current + 1))+ minNumber.current)
-        setRandomNumber(random)
+        if (randomNumber > numberChousen.current) {
+            return Alert.alert("Dont cheat", "", [{ text: "Sorry" }])
+        } else {
+            minNumber.current = randomNumber
+            const random = Math.floor((Math.random() * (maxNumber.current - minNumber.current + 1)) + minNumber.current)
+            winTheGame(random)
+            setRandomNumber(random)
+        }
     }
 
 

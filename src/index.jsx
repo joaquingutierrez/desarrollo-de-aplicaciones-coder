@@ -2,7 +2,7 @@ import { View, Alert } from 'react-native';
 import { styles } from "./style"
 import { useState, useRef } from 'react';
 import { Input } from './components';
-import { InGame } from "./screens"
+import { InGame, WinScreen } from "./screens"
 
 
 
@@ -11,6 +11,8 @@ export default function App() {
 
     const [inGame, setInGame] = useState(false)
     const numberChousen = useRef(null)
+    const [win, setWin] = useState(false)
+    const points = useRef(100)
 
 
     const handleOnChangeText = (value) => {
@@ -45,13 +47,23 @@ export default function App() {
         ])
     }
 
+    const winTheGame = (number) => {
+        points.current -= 1
+        if (number === numberChousen.current) {
+            setWin(true)
+        }
+    }
+
     return (
         <View style={styles.container}>
             {
                 !inGame ?
                     <Input placeHolder="Add a number..." buttonTitle="Confirm" handleButton={handleButton} handleOnChangeText={handleOnChangeText} />
                     :
-                    <InGame numberChousen={numberChousen}/>
+                    !win ?
+                        <InGame winTheGame={winTheGame} numberChousen={numberChousen} />
+                        :
+                        <WinScreen points={points} />
             }
 
         </View>
