@@ -51,7 +51,7 @@ export default function App() {
                 !inGame ?
                     <Input placeHolder="Add a number..." buttonTitle="Confirm" handleButton={handleButton} handleOnChangeText={handleOnChangeText} />
                     :
-                    <InGame />
+                    <InGame numberChousen={numberChousen}/>
             }
 
         </View>

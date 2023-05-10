@@ -1,21 +1,23 @@
 import { View, Button, Text } from "react-native"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { styles } from "./styles"
 
 const InGame = ({ numerChousen }) => {
 
+    const maxNumber = useRef(99)
+    const minNumber = useRef(1)
 
-    let maxNumber = 99
-    let minNumber = 1
-    const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * maxNumber + 1))
+    const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * maxNumber.current + minNumber.current))
 
     const handleLower = () => {
-        maxNumber = randomNumber
-        const random = Math.foor(Math.random() * maxNumber + 1)
+        maxNumber.current = randomNumber
+        const random = Math.floor(Math.random() * maxNumber.current + minNumber.current)
         setRandomNumber(random)
     }
     const handleHigher = () => {
-
+        minNumber.current = randomNumber
+        const random = Math.floor((Math.random() * (maxNumber.current-minNumber.current + 1))+ minNumber.current)
+        setRandomNumber(random)
     }
 
 
