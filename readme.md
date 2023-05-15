@@ -1,3 +1,4 @@
-Switch & elementos externos
+Vistas y navegación
 
-Aplicar lógica condicional que utilice estados para controlar la visualizacion de los componentes, e integrar fuentes externas
+Configurar rutas usando React Native
+Navegar entre ellas

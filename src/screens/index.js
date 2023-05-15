@@ -1,2 +1,3 @@
-export {default as InGame} from "./InGame"
-export {default as WinScreen} from "./WinScreen"
+export { default as CategoryScreen } from "./CategoryScreen"
+export { default as ProductListScreen } from "./ProductListScreen"
+export { default as ProductDetailScreen } from "./ProductDetailScreen"
