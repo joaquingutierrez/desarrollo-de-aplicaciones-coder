@@ -1,10 +1,15 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import { Category } from "../../components"
+import styles from "./style"
 
 const CategoryScreen = () => {
     return (
-        <View>
-            <Text>Category Screen</Text>
+        <View style={styles.container}>
+            <Category title="Toys" textWhite={true} />
+            <Category title="Puzzle" textWhite={true} />
+            <Category title="Video Games" textWhite={true} />
+            <Category title="Books" textWhite={true} />
         </View>
     )
 }
