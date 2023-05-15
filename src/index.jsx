@@ -13,10 +13,10 @@ export default function App() {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="Categories" component={CategoryScreen} />
-                <Stack.Screen name="ProductList" component={ProductListScreen} />
-                <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
+            <Stack.Navigator initialRouteName='categories'>
+                <Stack.Screen name="categories" component={CategoryScreen} />
+                <Stack.Screen name="productList" component={ProductListScreen} />
+                <Stack.Screen name="productDetail" component={ProductDetailScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
