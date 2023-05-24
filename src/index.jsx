@@ -19,7 +19,11 @@ export default function App() {
                     options={({ route }) => ({
                         title: route.params.name
                     })} />
-                <Stack.Screen name="productDetail" component={ProductDetailScreen} />
+                <Stack.Screen name="productDetail" component={ProductDetailScreen}
+                    options={({ route }) => ({
+                        title: route.params.name
+                    })}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );
