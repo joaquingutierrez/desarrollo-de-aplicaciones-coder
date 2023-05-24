@@ -28,21 +28,21 @@ const TabsNavigator = () => {
                 options={{ 
                     tabBarLabel: "Shop",
                     tabBarIcon: ({focused, color, size}) => {
-                        return <Ionicons name="home" size={size} color={color} />
+                        return <Ionicons name={focused ? "home" : "home-outline"} size={size} color={color} />
                     }
             }} />
             <BottomTab.Screen name="CartTab" component={CartNavigation}
                 options={{ 
                     tabBarLabel: "Cart",
                     tabBarIcon: ({focused, color, size}) => {
-                        return <Ionicons name="cart" size={size} color={color} />
+                        return <Ionicons name={focused ? "cart" : "cart-outline"} size={size} color={color} />
                     } 
                 }} />
             <BottomTab.Screen name="OrdersTab" component={OrdersNavigation}
                 options={{ 
                     tabBarLabel: "Orders",
                     tabBarIcon: ({focused, color, size}) => {
-                        return <Ionicons name="book" size={size} color={color} />
+                        return <Ionicons name={focused ? "book" : "book-outline"} size={size} color={color} />
                     }
             }} />
         </BottomTab.Navigator>
