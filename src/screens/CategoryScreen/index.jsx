@@ -24,7 +24,6 @@ const CategoryScreen = ({ navigation }) => {
                 renderItem={({ item }) => <Category item={item} textWhite={true} onSelected={onSelected} />}
                 keyExtractor={item => item.id}
             />
-            {/* <Button title="Ir a productos lista" onPress={() => navigation.navigate('productList')} /> */}
         </View>
     )
 }
