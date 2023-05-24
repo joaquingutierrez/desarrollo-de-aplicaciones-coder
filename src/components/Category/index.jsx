@@ -1,4 +1,4 @@
-import { TouchableOpacity, Button } from "react-native";
+import { TouchableOpacity, Button, View } from "react-native";
 import React from "react";
 import styles from "./style"
 import CustomText from "../CustomText";
