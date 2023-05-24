@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 
-import {CartNavigation, ShopNavigation, OrdersNavigation} from "./navigation"
+import TabsNavigator from "./navigation/tabs"
 
 
 
@@ -9,7 +9,7 @@ export default function App() {
 
     return (
         <NavigationContainer>
-            <ShopNavigation />
+            <TabsNavigator />
         </NavigationContainer>
     );
 }
