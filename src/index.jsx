@@ -15,7 +15,10 @@ export default function App() {
         <NavigationContainer>
             <Stack.Navigator initialRouteName='categories'>
                 <Stack.Screen name="categories" component={CategoryScreen} />
-                <Stack.Screen name="productList" component={ProductListScreen} />
+                <Stack.Screen name="productList" component={ProductListScreen}
+                    options={({ route }) => ({
+                        title: route.params.name
+                    })} />
                 <Stack.Screen name="productDetail" component={ProductDetailScreen} />
             </Stack.Navigator>
         </NavigationContainer>

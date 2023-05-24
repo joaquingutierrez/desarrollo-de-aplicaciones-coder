@@ -3,13 +3,13 @@ import React from "react";
 import styles from "./style"
 import CustomText from "../CustomText";
 
-const Category = ({ title, textWhite }) => {
+const Category = ({ item, textWhite, onSelected }) => {
 
 
 
     return (
-        <TouchableOpacity style={styles.container}>
-            <CustomText myCustomText={title} textWhite={textWhite} />
+        <TouchableOpacity style={styles.container} onPress={() => onSelected(item)}>
+            <CustomText myCustomText={item.title} textWhite={textWhite} />
         </TouchableOpacity>
     )
 }
