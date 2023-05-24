@@ -1,30 +1,15 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { View, Text, ActivityIndicator } from 'react-native';
-import { styles } from "./style"
-import { CategoryScreen, ProductListScreen, ProductDetailScreen } from "./screens"
-import { useFonts } from 'expo-font';
-import { colors } from "./constants/theme"
+
+import {CartNavigation, ShopNavigation, OrdersNavigation} from "./navigation"
+
 
 
 export default function App() {
 
-    const Stack = createNativeStackNavigator();
 
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName='categories'>
-                <Stack.Screen name="categories" component={CategoryScreen} />
-                <Stack.Screen name="productList" component={ProductListScreen}
-                    options={({ route }) => ({
-                        title: route.params.name
-                    })} />
-                <Stack.Screen name="productDetail" component={ProductDetailScreen}
-                    options={({ route }) => ({
-                        title: route.params.name
-                    })}
-                />
-            </Stack.Navigator>
+            <ShopNavigation />
         </NavigationContainer>
     );
 }
