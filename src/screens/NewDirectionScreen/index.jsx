@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { addPlace } from "../../store/place.slice";
 import styles from "./style"
+import { ImageSelector } from "../../components";
 
 
 const NewDirectionScreen = ({ navigation }) => {
@@ -19,7 +20,7 @@ const NewDirectionScreen = ({ navigation }) => {
     }
     const onHandlerSubmit = () => {
         dispatch(addPlace(text))
-        /* navigation.navigate("Places") */
+        navigation.navigate("Places")
     }
 
 
@@ -36,6 +37,7 @@ const NewDirectionScreen = ({ navigation }) => {
                     value={text}
                 />
                 <Button title="Agregar Direccion" color="blue" onPress={onHandlerSubmit} />
+                <ImageSelector onImage={() => null} />
             </View>
         </ScrollView>
     )

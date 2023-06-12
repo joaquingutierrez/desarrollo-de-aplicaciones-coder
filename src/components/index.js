@@ -1,4 +1,5 @@
 export { default as Category } from "./Category"
 export { default as Events } from "./Events/index"
 export { default as Products } from "./Products/index"
-export { default as ProductDetail} from "./ProductDetail/index"
+export { default as ProductDetail } from "./ProductDetail/index"
+export { default as ImageSelector } from "./image-selector"
