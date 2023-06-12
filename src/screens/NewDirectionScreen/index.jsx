@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { View, Text, ScrollView, TextInput, Button } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Category } from "../../components"
+
+import { addPlace } from "../../store/place.slice";
 import styles from "./style"
-import { selectCategory } from "../../store/actions";
 
 
 const NewDirectionScreen = ({ navigation }) => {
@@ -12,21 +12,14 @@ const NewDirectionScreen = ({ navigation }) => {
     const [text, setText] = useState("")
 
     const dispatch = useDispatch()
-    const categories = useSelector((state) => state.categories.data)
 
-    const onSelected = (item) => {
-        dispatch(selectCategory(item.id))
-        navigation.navigate("productList", {
-            //categoryId: item.id,
-            name: item.title,
-        });
-    };
 
     const onHandlerChangeText = (textValue) => {
         setText(textValue)
     }
-    const onHandlerPress = () => {
-        console.log(text)
+    const onHandlerSubmit = () => {
+        dispatch(addPlace(text))
+        /* navigation.navigate("Places") */
     }
 
 
@@ -42,7 +35,7 @@ const NewDirectionScreen = ({ navigation }) => {
                     onChangeText={onHandlerChangeText}
                     value={text}
                 />
-                <Button title="Agregar Direccion" color="blue" onPress={onHandlerPress} />
+                <Button title="Agregar Direccion" color="blue" onPress={onHandlerSubmit} />
             </View>
         </ScrollView>
     )

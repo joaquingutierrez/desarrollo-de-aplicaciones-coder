@@ -1,8 +1,9 @@
-import { createStore, combineReducers } from "redux";
-import { categoryReducer } from "./reducers";
+import { configureStore } from "@reduxjs/toolkit";
 
-const rootReducer = combineReducers({
-    categories: categoryReducer
-})
+import placeReducer from "./place.slice";
 
-export default createStore(rootReducer)
+export const store = configureStore({
+    reducer: {
+        place: placeReducer,
+    },
+});

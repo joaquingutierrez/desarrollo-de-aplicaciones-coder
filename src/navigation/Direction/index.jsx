@@ -8,8 +8,8 @@ const Stack = createNativeStackNavigator()
 
 const DirectionNavigator = () => {
     return (
-        <Stack.Navigator initialRouteName='Place'>
-            <Stack.Screen name="Place" component={DirectionsScreen}
+        <Stack.Navigator initialRouteName='Places'>
+            <Stack.Screen name="Places" component={DirectionsScreen}
                 options={({ navigation }) => (
                     {
                         title: "Directions",
