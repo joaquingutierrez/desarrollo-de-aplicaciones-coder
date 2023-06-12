@@ -1,4 +1,5 @@
-import { View, Button, Text, Image } from "react-native"
+import { View, Button, Text, Image, Alert } from "react-native"
+import { requestCameraPermissionsAsync, launchCameraAsync } from "expo-image-picker"
 
 import { styles } from "./style"
 import { useState } from "react"
@@ -7,8 +8,31 @@ const ImageSelector = ({ onImage }) => {
 
     const [pickedUrl, setPickedUrl] = useState(null)
 
-    const onHandlerTakeImage = () => {
+    const verifyPermissions = async () => {
+        const { status } = await requestCameraPermissionsAsync()
 
+        if (status !== "granted") {
+            Alert.alert(
+                "Permiso denegado", "Necesita permisos para usar la cámara", [{ text: "OK" }]
+            )
+            return false
+        }
+        return true
+    }
+
+    const onHandlerTakeImage = async () => {
+        const isCameraPermission = await verifyPermissions()
+        if (!isCameraPermission) return
+
+        const image = await launchCameraAsync({
+            allowsEditing: true,
+            aspect: [16, 9],
+            quality: 0.7
+        })
+
+        setPickedUrl(image.uri)
+
+        onImage(image.uri)
     }
 
 
@@ -18,7 +42,7 @@ const ImageSelector = ({ onImage }) => {
                 {!pickedUrl ? (
                     <Text>No hay imagen seleccionada</Text>
                 ) : (
-                    <Image style={styles.image} source={{url: pickedUrl}} />
+                    <Image style={styles.image} source={{ uri: pickedUrl }} />
                 )}
             </View>
             <Button title="Tomar Foto" color="blue" onPress={onHandlerTakeImage} />
