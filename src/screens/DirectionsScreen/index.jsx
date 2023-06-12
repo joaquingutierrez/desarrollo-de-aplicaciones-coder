@@ -11,10 +11,10 @@ const DirectionsScreen = ({ navigation }) => {
     const places = useSelector((state) => state.place.places)
 
     const onHandlerSelect = (id) => {
-        navigation.navigate("DirectionDetail", {directionId: id})
+        navigation.navigate("PlaceDetail", {directionId: id})
     }
 
-    const renderItem = ({item}) => <DirectionItem {...item} onSelect={onHandlerSelect}/>
+    const renderItem = ({item}) => <DirectionItem {...item} onSelect={() => onHandlerSelect(item.id)}/>
     const keyExtractor = (item) => item.id
 
     return (

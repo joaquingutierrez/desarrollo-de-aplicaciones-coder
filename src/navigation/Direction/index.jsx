@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Ionicons from "@expo/vector-icons/Ionicons"
 
-import { DirectionsScreen, NewDirectionScreen } from "../../screens"
+import { DirectionsScreen, NewDirectionScreen, DirectionDetailScreen } from "../../screens"
 import { TouchableOpacity } from "react-native";
 
 const Stack = createNativeStackNavigator()
@@ -26,6 +26,14 @@ const DirectionNavigator = () => {
                 options={({ navigation }) => (
                     {
                         title: "New Direction",
+                    }
+                )
+                }
+            />
+            <Stack.Screen name="PlaceDetail" component={DirectionDetailScreen}
+                options={({ navigation }) => (
+                    {
+                        title: "Direction Detail",
                         headerRight: () => (
                             <TouchableOpacity onPress={() => navigation.navigate("NewPlace")}>
                                 <Ionicons name="add-circle-outline" size={25} color="black" />
