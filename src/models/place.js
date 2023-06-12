@@ -1,7 +1,8 @@
 class Place {
-    constructor(id, direction) {
+    constructor(id, direction, image) {
         this.id = id.toString()
         this.direction = direction
+        this.image = image
     }
 }
 

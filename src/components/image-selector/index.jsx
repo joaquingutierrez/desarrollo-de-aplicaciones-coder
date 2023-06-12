@@ -30,9 +30,9 @@ const ImageSelector = ({ onImage }) => {
             quality: 0.7
         })
 
-        setPickedUrl(image.uri)
+        setPickedUrl(image.assets[0].uri)
 
-        onImage(image.uri)
+        onImage(image.assets[0].uri)
     }
 
 

@@ -3,7 +3,7 @@ import { View, Text, ScrollView, TextInput, Button } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 
-import { addPlace } from "../../store/place.slice";
+import { savePlace } from "../../store/place.slice";
 import styles from "./style"
 import { ImageSelector } from "../../components";
 
@@ -11,6 +11,7 @@ import { ImageSelector } from "../../components";
 const NewDirectionScreen = ({ navigation }) => {
 
     const [text, setText] = useState("")
+    const [image, setImage] = useState(null)
 
     const dispatch = useDispatch()
 
@@ -19,10 +20,12 @@ const NewDirectionScreen = ({ navigation }) => {
         setText(textValue)
     }
     const onHandlerSubmit = () => {
-        dispatch(addPlace(text))
+        dispatch(savePlace({title: text, image}))
         navigation.navigate("Places")
     }
-
+    const onImage = (imageUri) => {
+        setImage(imageUri)
+    }
 
     return (
         <ScrollView style={styles.container}>
@@ -37,7 +40,7 @@ const NewDirectionScreen = ({ navigation }) => {
                     value={text}
                 />
                 <Button title="Agregar Direccion" color="blue" onPress={onHandlerSubmit} />
-                <ImageSelector onImage={() => null} />
+                <ImageSelector onImage={onImage} />
             </View>
         </ScrollView>
     )
