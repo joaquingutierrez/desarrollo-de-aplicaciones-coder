@@ -6,12 +6,12 @@ export const init = () => {
     const promise = new Promise((resolve, reject) => {
         db.transaction((tx) => {
             tx.executeSql(
-                "CREATE TABLE IF NOT EXISTS places (id INTEGER PRIMARY KEY NOT NULL, title TEXT NOT NULL, image NOT NULL, adress NOT NULL, coords TEXT NOT NULL)",
+                "CREATE TABLE IF NOT EXISTS places (id INTEGER PRIMARY KEY NOT NULL, title TEXT NOT NULL, image TEXT NOT NULL)",
                 [],
                 () => {
                     resolve()
                 },
-                (err) => {
+                (_, err) => {
                     reject(err)
                 }
             )
@@ -21,16 +21,16 @@ export const init = () => {
     return promise
 }
 
-export const insertPlace = (title, image, address, coords) => {
+export const insertPlace = (title, image) => {
     const promise = new Promise((resolve, reject) => {
         db.transaction((tx) => {
             tx.executeSql(
-                "INSERT INTO places (title, image, adress, coords) VALUES (?,?,?,?)",
-                [title, image, address, JSON.stringify(coords)],
-                (result) => {
+                "INSERT INTO places (title, image) VALUES (?,?)",
+                [title, image],
+                (_, result) => {
                     resolve(result)
                 },
-                (err) => {
+                (_, err) => {
                     reject(err)
                 }
             )
@@ -40,16 +40,16 @@ export const insertPlace = (title, image, address, coords) => {
     return promise
 }
 
-export const selectPlace = () => {
-    const promise = new Promise((resolve,reject) => {
-        db.transaction((tx)=>{
+export const selectPlaces = () => {
+    const promise = new Promise((resolve, reject) => {
+        db.transaction((tx) => {
             tx.executeSql(
                 "SELECT * FROM places",
                 [],
-                (result) => {
+                (_, result) => {
                     resolve(result)
                 },
-                (err) => {
+                (_, err) => {
                     reject(err)
                 }
             )

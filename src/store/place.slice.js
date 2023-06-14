@@ -1,39 +1,58 @@
-import { createSlice } from "@reduxjs/toolkit"
-import {documentDirectory, copyAsync} from "expo-file-system"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import Place from "../models/place"
+import { insertPlace, selectPlaces } from "../db";
+import Place from "../models/place";
 
 const initialState = {
-    places: []
-}
+    places: [],
+    isLoading: false,
+};
+
+export const savePlace = createAsyncThunk("place/savePlace", async (place, thunkAPI) => {
+    try {
+        const result = await insertPlace(place.title, place.image);
+        const newPlace = new Place(result.insertId, place.title, place.image);
+        return newPlace;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(extractErrorMessage(error));
+    }
+});
+
+export const getPlaces = createAsyncThunk("place/getPlaces", async (_, thunkAPI) => {
+    try {
+        const result = await selectPlaces();
+        return result?.rows?._array;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(extractErrorMessage(error));
+    }
+});
 
 const placeSlice = createSlice({
     name: "place",
     initialState,
-    reducers: {
-        addPlace: (state, action) => {
-            const newPlace = new Place(Date.now(), action.payload.title, action.payload.image)
-            state.places.push(newPlace)
-        }
-    }
-})
-
-export const { addPlace } = placeSlice.actions
-
-export const savePlace = ({title, image}) => {
-    return async (dispatch) => {
-        const fileName = image.split("/").pop()
-        const newPath = documentDirectory + fileName
-        try {
-            await copyAsync({
-                from: image,
-                to: newPath
+    extraReducers: (builder) => {
+        builder
+            .addCase(savePlace.pending, (state) => {
+                state.isLoading = true;
             })
-        } catch (error) {
-            console.error(error)
-        }
+            .addCase(savePlace.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.places.push(action.payload);
+            })
+            .addCase(savePlace.rejected, (state, action) => {
+                state.isLoading = false;
+            })
+            .addCase(getPlaces.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getPlaces.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.places = action.payload;
+            })
+            .addCase(getPlaces.rejected, (state, action) => {
+                state.isLoading = false;
+            });
+    },
+});
 
-        dispatch(addPlace({title, image}))
-    }
-}
-export default placeSlice.reducer
+export default placeSlice.reducer;

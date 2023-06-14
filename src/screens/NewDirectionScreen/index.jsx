@@ -20,7 +20,7 @@ const NewDirectionScreen = ({ navigation }) => {
         setText(textValue)
     }
     const onHandlerSubmit = () => {
-        dispatch(savePlace({title: text, image}))
+        dispatch(savePlace({title: text, image})).unwrap()
         navigation.navigate("Places")
     }
     const onImage = (imageUri) => {
